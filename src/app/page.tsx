@@ -1,235 +1,126 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Link from "next/link";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { NetworkStats } from '@/components/dashboard/NetworkStats';
+import { AgentList } from '@/components/dashboard/AgentList';
+import { TransactionExplorer } from '@/components/dashboard/TransactionExplorer';
+import { QuotesManager } from '@/components/dashboard/QuotesManager';
+import { SpendingLimits } from '@/components/dashboard/SpendingLimits';
+import { Zap, Bot, FileText, Shield, Activity } from 'lucide-react';
 
 export default function Home() {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950">
-      {/* Navbar */}
-      <nav className="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur-xl border-b border-purple-500/20">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-cyan-500 flex items-center justify-center">
-              <span className="text-xl">💳</span>
-            </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              AI Payment Rails
-            </span>
-          </div>
-          <div className="flex items-center gap-6">
-            <Link href="/dashboard" className="text-slate-300 hover:text-white transition-colors">
-              Dashboard
-            </Link>
-            <Link href="/explorer" className="text-slate-300 hover:text-white transition-colors">
-              Explorer
-            </Link>
-            <Link
-              href="/dashboard"
-              className="px-4 py-2 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-lg font-medium hover:opacity-90 transition-opacity"
-            >
-              Launch App
-            </Link>
-          </div>
-        </div>
-      </nav>
-
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 border border-purple-500/30 rounded-full mb-8">
-            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-            <span className="text-purple-300 text-sm">Powered by Monad Blockchain</span>
-          </div>
-
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            <span className="bg-gradient-to-r from-white via-purple-200 to-cyan-200 bg-clip-text text-transparent">
-              Payment Infrastructure
-            </span>
-            <br />
-            <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              for Autonomous AI Agents
-            </span>
-          </h1>
-
-          <p className="text-xl text-slate-400 max-w-3xl mx-auto mb-12">
-            Decentralized payment rails enabling AI agents to transact value securely.
-            Let your AI agents hire other agents, pay for services, and settle instantly with stablecoins.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/dashboard"
-              className="px-8 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-xl font-semibold text-lg hover:scale-105 transition-transform shadow-lg shadow-purple-500/25"
-            >
-              Get Started →
-            </Link>
-            <Link
-              href="/explorer"
-              className="px-8 py-4 bg-slate-800/50 border border-slate-700 rounded-xl font-semibold text-lg hover:bg-slate-800 transition-colors"
-            >
-              View Explorer
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Animated Agent Flow */}
-      <section className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div
-            className="relative bg-slate-900/50 border border-purple-500/20 rounded-3xl p-8 overflow-hidden"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-cyan-500/5"></div>
-
-            <div className="relative flex items-center justify-between">
-              {/* Agent 1 */}
-              <div className="flex flex-col items-center">
-                <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center mb-4 shadow-lg shadow-purple-500/30">
-                  <span className="text-4xl">🤖</span>
-                </div>
-                <span className="font-semibold text-white">Research Agent</span>
-                <span className="text-sm text-slate-400">Needs compute</span>
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+      {/* Header */}
+      <header className="border-b border-slate-800 bg-slate-900/50 backdrop-blur-sm sticky top-0 z-50">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600">
+                <Zap className="h-6 w-6 text-white" />
               </div>
-
-              {/* Payment Flow Animation */}
-              <div className="flex-1 mx-8">
-                <div className="relative h-2 bg-slate-800 rounded-full overflow-hidden">
-                  <div
-                    className={`absolute inset-y-0 left-0 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full transition-all duration-1000 ${
-                      isHovered ? "w-full" : "w-0"
-                    }`}
-                  ></div>
-                </div>
-                <div className="flex justify-center mt-4">
-                  <div className={`flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/30 rounded-full transition-opacity duration-500 ${isHovered ? "opacity-100" : "opacity-0"}`}>
-                    <span className="text-green-400 font-mono text-sm">+ 50 USDC</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Agent 2 */}
-              <div className="flex flex-col items-center">
-                <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-cyan-600 to-cyan-800 flex items-center justify-center mb-4 shadow-lg shadow-cyan-500/30">
-                  <span className="text-4xl">⚡</span>
-                </div>
-                <span className="font-semibold text-white">Compute Agent</span>
-                <span className="text-sm text-slate-400">Provides GPU</span>
+              <div>
+                <h1 className="text-xl font-bold text-white">AI Agent Payment Rails</h1>
+                <p className="text-xs text-slate-400">Decentralized Infrastructure for Autonomous AI Commerce</p>
               </div>
             </div>
-
-            <p className="text-center text-slate-400 mt-8">
-              Hover to see payment flow in action
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Use Cases */}
-      <section className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-            <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              🛠 Use Cases
-            </span>
-          </h2>
-          <p className="text-slate-400 text-center mb-12 max-w-2xl mx-auto">
-            AI agents are becoming autonomous economic actors. Our platform enables seamless machine-to-machine commerce.
-          </p>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: "💻",
-                title: "Compute Resources",
-                desc: "AI models request and pay for compute from rendering agents"
-              },
-              {
-                icon: "📊",
-                title: "Premium APIs",
-                desc: "Data agents purchase access from provider agents"
-              },
-              {
-                icon: "📈",
-                title: "Trading Fees",
-                desc: "Trading agents pay fee splits to strategy creators"
-              },
-              {
-                icon: "🎨",
-                title: "Asset Licensing",
-                desc: "Creative AI agents license assets from each other"
-              }
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="p-6 bg-slate-900/50 border border-slate-800 rounded-2xl hover:border-purple-500/50 transition-colors group"
-              >
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500/20 to-cyan-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <span className="text-2xl">{item.icon}</span>
-                </div>
-                <h3 className="font-semibold text-white mb-2">{item.title}</h3>
-                <p className="text-sm text-slate-400">{item.desc}</p>
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 text-sm">
+                <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+                <span className="text-slate-300">Monad Testnet</span>
               </div>
-            ))}
+              <button className="px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium text-sm hover:opacity-90 transition-opacity">
+                Connect Wallet
+              </button>
+            </div>
           </div>
         </div>
-      </section>
+      </header>
 
-      {/* Tech Stack */}
-      <section className="py-20 px-6 bg-slate-900/30">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-12">
-            <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              ⚙️ Tech Stack
-            </span>
-          </h2>
-          <div className="flex flex-wrap justify-center gap-4">
-            {["Next.js", "TypeScript", "Tailwind CSS", "Monad Blockchain", "Stablecoins", "Smart Contracts"].map((tech) => (
-              <div
-                key={tech}
-                className="px-6 py-3 bg-slate-800/50 border border-slate-700 rounded-full text-slate-300"
-              >
-                {tech}
-              </div>
-            ))}
-          </div>
+      {/* Main Content */}
+      <main className="container mx-auto px-4 py-8">
+        {/* Network Stats */}
+        <div className="mb-8">
+          <NetworkStats />
         </div>
-      </section>
 
-      {/* CTA */}
-      <section className="py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="p-12 bg-gradient-to-br from-purple-900/50 to-cyan-900/50 border border-purple-500/30 rounded-3xl">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-              ✨ The economic layer for the autonomous AI revolution
+        {/* Tabs */}
+        <Tabs defaultValue="agents" className="space-y-6">
+          <TabsList className="bg-slate-800/50 border border-slate-700 p-1">
+            <TabsTrigger 
+              value="agents" 
+              className="data-[state=active]:bg-slate-700 text-slate-300 data-[state=active]:text-white"
+            >
+              <Bot className="h-4 w-4 mr-2" />
+              My Agents
+            </TabsTrigger>
+            <TabsTrigger 
+              value="transactions"
+              className="data-[state=active]:bg-slate-700 text-slate-300 data-[state=active]:text-white"
+            >
+              <Activity className="h-4 w-4 mr-2" />
+              Transactions
+            </TabsTrigger>
+            <TabsTrigger 
+              value="quotes"
+              className="data-[state=active]:bg-slate-700 text-slate-300 data-[state=active]:text-white"
+            >
+              <FileText className="h-4 w-4 mr-2" />
+              Quotes
+            </TabsTrigger>
+            <TabsTrigger 
+              value="limits"
+              className="data-[state=active]:bg-slate-700 text-slate-300 data-[state=active]:text-white"
+            >
+              <Shield className="h-4 w-4 mr-2" />
+              Spending Limits
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="agents">
+            <AgentList />
+          </TabsContent>
+
+          <TabsContent value="transactions">
+            <TransactionExplorer />
+          </TabsContent>
+
+          <TabsContent value="quotes">
+            <QuotesManager />
+          </TabsContent>
+
+          <TabsContent value="limits">
+            <SpendingLimits />
+          </TabsContent>
+        </Tabs>
+
+        {/* Footer CTA */}
+        <div className="mt-12 text-center">
+          <div className="inline-block p-8 rounded-2xl bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-slate-700">
+            <h2 className="text-2xl font-bold text-white mb-2">
+              The Economic Layer for Autonomous AI
             </h2>
-            <p className="text-slate-300 mb-8 text-lg">
-              Start building your AI agent economy today
+            <p className="text-slate-400 max-w-xl mx-auto mb-6">
+              No more human intermediaries. No more payment friction. 
+              Just seamless value transfer between intelligent machines on Monad.
             </p>
-            <Link
-              href="/dashboard"
-              className="inline-flex px-8 py-4 bg-white text-slate-900 rounded-xl font-semibold text-lg hover:scale-105 transition-transform"
-            >
-              Launch Dashboard →
-            </Link>
+            <div className="flex justify-center gap-4">
+              <button className="px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium hover:opacity-90 transition-opacity">
+                Deploy Your Agent
+              </button>
+              <button className="px-6 py-3 rounded-lg border border-slate-600 text-slate-300 font-medium hover:bg-slate-800 transition-colors">
+                Read Documentation
+              </button>
+            </div>
           </div>
         </div>
-      </section>
+      </main>
 
       {/* Footer */}
-      <footer className="py-8 px-6 border-t border-slate-800">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
-          <div className="flex items-center gap-2 mb-4 md:mb-0">
-            <span className="text-xl">💳</span>
-            <span className="font-semibold text-slate-300">AI Payment Rails</span>
-          </div>
-          <p className="text-slate-500 text-sm">
-            Built for Monad Blitz CDMX 🇲🇽 | VibeCoding Bootcamp
-          </p>
+      <footer className="border-t border-slate-800 mt-16 py-8">
+        <div className="container mx-auto px-4 text-center text-slate-500 text-sm">
+          <p>Built on Monad • Powered by Stablecoins • Designed for AI Agents</p>
+          <p className="mt-2">VibeCoding Bootcamp • Frutero Club 🍓</p>
         </div>
       </footer>
     </div>
